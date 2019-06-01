@@ -4,15 +4,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
+import awsm.awsmizng.u.acricapp.iterfaces.GetMatches;
+import awsm.awsmizng.u.acricapp.models.MatchList;
+import awsm.awsmizng.u.acricapp.models.RetroMatches;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<RetroMatches> matchList;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadDataList(List<RetroMatches> usersList) {
 
         recyclerView = findViewById(R.id.matchRecyclerView);
-        matchAdapter = new MatchAdapter(usersList);
+        matchAdapter = new MatchAdapter(getApplication(), usersList);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);

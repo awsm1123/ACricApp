@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.acricapp;
+package awsm.awsmizng.u.acricapp.models;
 
 import com.google.gson.annotations.SerializedName;
 

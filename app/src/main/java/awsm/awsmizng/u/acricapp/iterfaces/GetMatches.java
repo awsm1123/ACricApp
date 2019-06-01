@@ -1,7 +1,6 @@
-package awsm.awsmizng.u.acricapp;
+package awsm.awsmizng.u.acricapp.iterfaces;
 
-import java.util.List;
-
+import awsm.awsmizng.u.acricapp.models.MatchList;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

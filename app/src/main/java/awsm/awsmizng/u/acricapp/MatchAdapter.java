@@ -1,5 +1,7 @@
 package awsm.awsmizng.u.acricapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +13,12 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Random;
 
+import awsm.awsmizng.u.acricapp.models.RetroMatches;
+
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.CustomViewHolder> {
     private List<RetroMatches> matchList;
 
-    public MatchAdapter(List<RetroMatches> list){
+    public MatchAdapter(Context context, List<RetroMatches> list){
         matchList=list;
     }
 
@@ -40,9 +44,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.CustomViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder viewHolder, int i) {
-
-        RetroMatches retroMatches = matchList.get(i);
+    public void onBindViewHolder(@NonNull CustomViewHolder viewHolder, final int i) {
+        final RetroMatches retroMatches = matchList.get(i);
+        viewHolder.itemView.setTag(retroMatches);
         viewHolder.tvMatch.setText(retroMatches.getTeam1() + " Vs " +retroMatches.getTeam2());
 
         Random rnd = new Random();
@@ -52,6 +56,21 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.CustomViewHo
         Random rnd2 = new Random();
         int color2 = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         viewHolder.viewRight.setBackgroundColor(color2);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MatchDetails.class);
+                intent.putExtra("UniqueID", matchList.get(i).getUnqiue_id())
+                        .putExtra("tossWinner",matchList.get(i).getTossWinner())
+                        .putExtra("winner", matchList.get(i).getWinner())
+                        .putExtra("matchStarted", matchList.get(i).getMatch_started())
+                        .putExtra("date", matchList.get(i).getDate())
+                        .putExtra("type", matchList.get(i).getType())
+                ;
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

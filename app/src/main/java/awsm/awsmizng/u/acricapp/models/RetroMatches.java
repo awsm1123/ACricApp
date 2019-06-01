@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.acricapp;
+package awsm.awsmizng.u.acricapp.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -33,11 +33,27 @@ public class RetroMatches {
     @SerializedName("matchStarted")
     private String match_started;
 
-    public RetroMatches(String unqiue_id, String team1, String team2, String match_started) {
+    @SerializedName("winner_team")
+    private String winner;
+
+    @SerializedName("toss_winner_team")
+    private String tossWinner;
+
+    @SerializedName("date")
+    private String date;
+
+    @SerializedName("type")
+    private String type;
+
+    public RetroMatches(String unqiue_id, String team1, String team2, String match_started, String winner, String tossWinner, String date, String type) {
         this.unqiue_id = unqiue_id;
         this.team1 = team1;
         this.team2 = team2;
         this.match_started = match_started;
+        this.winner = winner;
+        this.tossWinner = tossWinner;
+        this.date = date;
+        this.type = type;
     }
 
     public String getUnqiue_id() {
@@ -70,5 +86,37 @@ public class RetroMatches {
 
     public void setMatch_started(String match_started) {
         this.match_started = match_started;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+
+    public String getTossWinner() {
+        return tossWinner;
+    }
+
+    public void setTossWinner(String tossWinner) {
+        this.tossWinner = tossWinner;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
